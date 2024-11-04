@@ -9,6 +9,7 @@ CREATE TABLE Room(
    Room_Id INT,
    Room_Name VARCHAR(50),
    Slots INT,
+   Mode INT,
    Password VARCHAR(50),
    Client_Id INT NOT NULL,
    PRIMARY KEY(Room_Id),
