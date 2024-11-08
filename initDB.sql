@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS poker;   
+
 CREATE TABLE IF NOT EXISTS Client(
    username VARCHAR(25),
    password VARCHAR(50),
