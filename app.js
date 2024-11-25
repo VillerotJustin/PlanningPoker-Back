@@ -47,7 +47,7 @@ app.post("/users", (req, res) => {
 // END USERS
 
 // ROOMS
-/*app.get("/rooms", (req, res) => {
+app.get("/rooms", (req, res) => {
     GetRooms(res)
 })
 
@@ -88,4 +88,4 @@ app.post("/stories", (req, res) => {
 app.put("/stories/:id", (req, res) => {
     UpdateStory(req, res)
 })
-// END STORIES*/
+// END STORIES

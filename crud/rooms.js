@@ -1,11 +1,13 @@
+const {dbConnection} = require('../database/database');
+
 GetRooms = (req, res) => {
-    db.query("SELECT * FROM room", (err, data) => {
+    dbConnection.query("SELECT * FROM room", (err, data) => {
         res.send(data)
     })
 }
 
 GetRoom = (req, res) => {
-    db.query(`SELECT * FROM room WHERE id="${req.params.id}"`, (err,data) => {
+    dbConnection.query(`SELECT * FROM room WHERE id="${req.params.id}"`, (err,data) => {
         if (err) console.log(err)
         else {
             if (data.length == 0){
@@ -20,7 +22,7 @@ GetRoom = (req, res) => {
 
 DeleteRoom = (req,res) => {
     console.log(`DELETE FROM room WHERE id="${req.params.id}"`)
-    db.query(`DELETE FROM room WHERE id="${req.params.id}"`, (err, data)=>{
+    dbConnection.query(`DELETE FROM room WHERE id="${req.params.id}"`, (err, data)=>{
         if (err) console.log(err)
         else {
             if (data.affectedRows == 1){
@@ -36,9 +38,9 @@ DeleteRoom = (req,res) => {
 CreateRoom = (req, res) => {
     if (req.body && req.body.name && req.body.slots && req.body.mode && req.body.password && req.body.owner){
 
-        db.query(`SELECT * FROM user WHERE username='${req.body.owner}'`, (err, data) => {
+        dbConnection.query(`SELECT * FROM user WHERE username='${req.body.owner}'`, (err, data) => {
             if (data.length == 1){
-                db.query(`INSERT INTO room (name, slots, mode, password, owner) VALUES ('${req.body.name}', ${req.body.slots}, ${req.body.mode}, '${req.body.password}', '${req.body.owner}')`, (err, data)=>{
+                dbConnection.query(`INSERT INTO room (name, slots, mode, password, owner) VALUES ('${req.body.name}', ${req.body.slots}, ${req.body.mode}, '${req.body.password}', '${req.body.owner}')`, (err, data)=>{
                     if (err) console.log(err)
                     else
                         if (data.affectedRows == 1){
@@ -63,7 +65,7 @@ UpdateRoom = (req, res) => {
     // name / slots / mode / password
     if (req.body && (req.body.name || req.body.slots || req.body.mode || req.body.password)){
 
-        db.query(`SELECT * FROM room WHERE id='${req.params.id}'`, (err, data) => { // Item exist ?
+        dbConnection.query(`SELECT * FROM room WHERE id='${req.params.id}'`, (err, data) => { // Item exist ?
             if (data.length == 1){
                 // Construct params
                 let params = ""
@@ -73,7 +75,7 @@ UpdateRoom = (req, res) => {
                 if (req.body.password) params += `password='${req.body.password}',`
                 params = params.slice(0, -1)
 
-                db.query(`UPDATE room SET ${params} WHERE id=${req.params.id}`, (err, data) => {
+                dbConnection.query(`UPDATE room SET ${params} WHERE id=${req.params.id}`, (err, data) => {
                     if (err) console.log(err)
                     else {
                         if (data.affectedRows==0){
