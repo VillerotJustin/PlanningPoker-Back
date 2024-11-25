@@ -4,7 +4,7 @@ require('dotenv').config();
 
 function readFile(file){
     var initSQL = fs.readFileSync(file, {encoding:"utf-8", flag:"r"})
-    return initSQL.replaceAll("`DATABASE`", process.env.DATABASE);
+    return initSQL.replaceAll("`DATABASE`", process.env.DB_DATABASE);
 }
 
 const dbConnection = mysql.createConnection({
