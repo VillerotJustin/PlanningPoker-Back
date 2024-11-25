@@ -10,9 +10,9 @@ function readFile(file){
 const dbConnection = mysql.createConnection({
     multipleStatements: true,
     namedPlaceholders : true,
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 })
 
 function startDatabase(dbConnection, query="./database/initDB.sql"){
