@@ -1,6 +1,6 @@
 const {dbConnection} = require('../database/database');
 
-GetRooms = (req, res) => {
+GetRooms = (res) => {
     dbConnection.query("SELECT * FROM room", (err, data) => {
         res.send(data)
     })
