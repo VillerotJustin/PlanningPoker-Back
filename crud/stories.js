@@ -40,7 +40,7 @@ CreateStory = (req, res) => {
 
         dbConnection.query(`SELECT * FROM Room WHERE id='${req.body.roomId}'`, (err, data) => {
             if (data.length == 1){
-                dbConnection.query(`INSERT INTO Story (name, description, value, roomId) VALUES ('${req.body.name}', ${req.body.description}, ${req.body.value}, '${req.body.roomId}')`, (err, data)=>{
+                dbConnection.query(`INSERT INTO Story (name, description, value, roomId) VALUES ('${req.body.name}', '${req.body.description}', ${req.body.value}, ${req.body.roomId})`, (err, data)=>{
                     if (err) console.log(err)
                     else
                         if (data.affectedRows == 1){
@@ -70,7 +70,7 @@ UpdateStory = (req, res) => {
                 // Construct params
                 let params = ""
                 if (req.body.name) params += `name='${req.body.name}',`
-                if (req.body.description) params += `description=${req.body.description},`
+                if (req.body.description) params += `description='${req.body.description}',`
                 if (req.body.value) params += `value=${req.body.value},`
                 params = params.slice(0, -1)
 
