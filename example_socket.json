@@ -1,0 +1,82 @@
+[
+    // Godot => Socket
+
+    // Le owner "Crée sa party" (le fait également rejoindre)
+    {
+        "code":"PARTY_CREATE",
+        "id":5,
+    }
+
+    // Le owner lance le planning poker
+    {
+        "code":"PARTY_START"
+    }
+
+    // Un utilisateur rejoint la party
+    {
+        "code":"PARTY_JOIN",
+        "id":5
+    }
+
+    // Un utilisateur quitte la party
+    {
+        "code":"PARTY_LEAVE"
+    }
+
+    //L'utilisateur vote
+    {
+        "code":"PARTY_VOTE",
+        "vote":20
+    }
+
+    // Socket => Godot
+
+
+    {
+        "code":"PARTY_MEMBER_JOINED",
+        "user":"bob"
+    }
+
+    {
+        "code":"PARTY_MEMBER_LEAVED",
+        "user":"bob"
+    }
+
+    // Une nouvelle story doit être vôté
+    {
+        "code":"PARTY_START_VOTE",
+        "story":["name de la story", "description de la story"]
+    }
+
+    // Les joueurs ne se sont pas mis d'accord, un nouveau vote est nécessaire
+    {
+        "code":"PARTY_REVOTE",
+        "numberOfRevote":3
+    }
+
+    // Les joueurs savent que le membre a voté (vote non révélé)
+    {
+        "code":"PARTY_MEMBER_HAS_VOTED",
+        "user":"luc"
+    }
+
+    // Les votes sont révélés à tout le monde
+    {
+        "code":"PARTY_REVEAL",
+        "votes":[ ["jean", 10], ["luc", 0.5], ["bob", 20] ]
+    }
+
+
+    // Les participants savent que le owner a commencé la réunion
+    {
+        "code":"PARTY_STARTED"
+    }
+
+    {
+        "code":"PARTY_ENDED",
+        "results":[ [name, description, value], ... ]
+    }
+]
+
+
+

@@ -1,12 +1,12 @@
 const express = require("express")
-
+const pm = require('./partyManager')
 const {GetUser, GetUsers, CreateUser, DeleteUser} = require("./crud/users")
 const {GetRoom, GetRooms, CreateRoom, DeleteRoom, UpdateRoom} = require("./crud/rooms")
 const {GetStory, GetStories, CreateStory, DeleteStory, UpdateStory} = require("./crud/stories")
 require('dotenv').config();
 
 const app = express()
-const port = 3000
+const port = process.env.API_PORT
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');

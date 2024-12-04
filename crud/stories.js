@@ -36,11 +36,11 @@ DeleteStory = (req,res) => {
 }
 
 CreateStory = (req, res) => {
-    if (req.body && req.body.name && req.body.description && req.body.value && req.body.roomId){
+    if (req.body && req.body.name && req.body.description && req.body.roomId){
 
         dbConnection.query(`SELECT * FROM Room WHERE id='${req.body.roomId}'`, (err, data) => {
             if (data.length == 1){
-                dbConnection.query(`INSERT INTO Story (name, description, value, roomId) VALUES ('${req.body.name}', '${req.body.description}', ${req.body.value}, ${req.body.roomId})`, (err, data)=>{
+                dbConnection.query(`INSERT INTO Story (name, description, value, roomId) VALUES ('${req.body.name}', '${req.body.description}', -1, ${req.body.roomId})`, (err, data)=>{
                     if (err) console.log(err)
                     else
                         if (data.affectedRows == 1){

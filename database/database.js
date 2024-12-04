@@ -26,5 +26,4 @@ function startDatabase(dbConnection, query="./database/initDB.sql"){
 }
 
 startDatabase(dbConnection)
-
 module.exports = {dbConnection};
