@@ -95,3 +95,5 @@ UpdateStory = (req, res) => {
         return res.send({err:"Wrong or missing parameters. (name || description || value)"})
     }
 }
+
+module.exports = {GetStory, GetStories, CreateStory, DeleteStory, UpdateStory}

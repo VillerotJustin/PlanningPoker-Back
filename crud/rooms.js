@@ -96,3 +96,5 @@ UpdateRoom = (req, res) => {
         return res.send({err:"Wrong or missing parameters. (name || slots || mode || password)"})
     }
 }
+
+module.exports = {GetRoom, GetRooms, CreateRoom, DeleteRoom, UpdateRoom}
