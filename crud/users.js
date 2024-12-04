@@ -38,7 +38,7 @@ CreateUser = (req, res) => {
     console.log(req)
     if (req.body && req.body.username && req.body.password){
         dbConnection.query(`INSERT INTO User VALUES ('${req.body.username}', '${req.body.password}')`, (err, data)=>{
-            if (err) {res.send(false); console.log(err)}
+            if (err) {res.status(418); res.send(false); console.log(err)}
             else {
                 if (data.affectedRows == 1){
                     res.send(true)
