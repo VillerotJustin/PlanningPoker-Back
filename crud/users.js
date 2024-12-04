@@ -1,13 +1,13 @@
 const {dbConnection} = require('../database/database');
 
 GetUsers = (res) => {
-    dbConnection.query("SELECT * FROM user", (err, data) => {
+    dbConnection.query("SELECT * FROM User", (err, data) => {
         res.send(data)
     })
 }
 
 GetUser = (req, res) => {
-    dbConnection.query(`SELECT * FROM user WHERE username="${req.params.username}"`, (err,data) => {
+    dbConnection.query(`SELECT * FROM User WHERE username="${req.params.username}"`, (err,data) => {
         if (err) console.log(err)
         else {
             if (data.length == 0){
@@ -21,7 +21,7 @@ GetUser = (req, res) => {
 }
 
 DeleteUser = (req,res) => {
-    dbConnection.query(`DELETE FROM user WHERE username="${req.params.username}"`, (err, data)=>{
+    dbConnection.query(`DELETE FROM User WHERE username="${req.params.username}"`, (err, data)=>{
         if (err) console.log(err)
         else {
             if (data.affectedRows == 1){
@@ -37,7 +37,7 @@ DeleteUser = (req,res) => {
 CreateUser = (req, res) => {
     console.log(req)
     if (req.body && req.body.username && req.body.password){
-        dbConnection.query(`INSERT INTO user VALUES ('${req.body.username}', '${req.body.password}')`, (err, data)=>{
+        dbConnection.query(`INSERT INTO User VALUES ('${req.body.username}', '${req.body.password}')`, (err, data)=>{
             if (err) console.log(err)
             else {
                 if (data.affectedRows == 1){
