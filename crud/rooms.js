@@ -36,8 +36,8 @@ DeleteRoom = (req,res) => {
 }
 
 CreateRoom = (req, res) => {
-    print(req.body.opkj)
-    print(req.body.mode != undefined)
+    console.log(req.body.opkj)
+    console.log(req.body.mode != undefined)
     if (req.body && req.body.name && req.body.slots && req.body.mode && req.body.password && req.body.owner){
 
         dbConnection.query(`SELECT * FROM User WHERE username='${req.body.owner}'`, (err, data) => {
