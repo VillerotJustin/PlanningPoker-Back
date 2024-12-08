@@ -69,9 +69,9 @@ UpdateStory = (req, res) => {
             if (data.length == 1){
                 // Construct params
                 let params = ""
-                if (req.body.name) params += `name='${req.body.name}',`
-                if (req.body.description) params += `description='${req.body.description}',`
-                if (req.body.value) params += `value=${req.body.value},`
+                if (req.body.name != undefined) params += `name='${req.body.name}',`
+                if (req.body.description != undefined) params += `description='${req.body.description}',`
+                if (req.body.value != undefined) params += `value=${req.body.value},`
                 params = params.slice(0, -1)
 
                 dbConnection.query(`UPDATE Story SET ${params} WHERE id=${req.params.id}`, (err, data) => {

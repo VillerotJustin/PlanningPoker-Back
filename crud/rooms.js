@@ -69,10 +69,10 @@ UpdateRoom = (req, res) => {
             if (data.length == 1){
                 // Construct params
                 let params = ""
-                if (req.body.name) params += `name='${req.body.name}',`
-                if (req.body.slots) params += `slots=${req.body.slots},`
-                if (req.body.mode) params += `mode=${req.body.mode},`
-                if (req.body.password) params += `password='${req.body.password}',`
+                if (req.body.name != undefined) params += `name='${req.body.name}',`
+                if (req.body.slots != undefined) params += `slots=${req.body.slots},`
+                if (req.body.mode != undefined) params += `mode=${req.body.mode},`
+                if (req.body.password != undefined) params += `password='${req.body.password}',`
                 params = params.slice(0, -1)
 
                 dbConnection.query(`UPDATE Room SET ${params} WHERE id=${req.params.id}`, (err, data) => {
