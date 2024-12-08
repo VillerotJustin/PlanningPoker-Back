@@ -36,7 +36,7 @@ DeleteUser = (req,res) => {
 
 CreateUser = (req, res) => {
     console.log(req)
-    if (req.body && req.body.username && req.body.password){
+    if (req.body != undefined && req.body.username && req.body.password){
         dbConnection.query(`INSERT INTO User VALUES ('${req.body.username}', '${req.body.password}')`, (err, data)=>{
             if (err) {res.status(418); res.send(false); console.log(err)}
             else {

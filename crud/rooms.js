@@ -36,9 +36,7 @@ DeleteRoom = (req,res) => {
 }
 
 CreateRoom = (req, res) => {
-    console.log(req.body.opkj)
-    console.log(req.body.mode != undefined)
-    if (req.body && req.body.name && req.body.slots && req.body.mode && req.body.password && req.body.owner){
+    if (req.body != undefined && req.body.name != undefined && req.body.slots != undefined && req.body.mode != undefined && req.body.password != undefined && req.body.owner != undefined){
 
         dbConnection.query(`SELECT * FROM User WHERE username='${req.body.owner}'`, (err, data) => {
             if (data.length == 1){
@@ -65,7 +63,7 @@ CreateRoom = (req, res) => {
 
 UpdateRoom = (req, res) => {
     // name / slots / mode / password
-    if (req.body && (req.body.name || req.body.slots || req.body.mode || req.body.password)){
+    if (req.body != undefined && (req.body.name != undefined || req.body.slots != undefined || req.body.mode != undefined || req.body.password != undefined)){
 
         dbConnection.query(`SELECT * FROM Room WHERE id='${req.params.id}'`, (err, data) => { // Item exist ?
             if (data.length == 1){

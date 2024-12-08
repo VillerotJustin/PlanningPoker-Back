@@ -36,7 +36,7 @@ DeleteStory = (req,res) => {
 }
 
 CreateStory = (req, res) => {
-    if (req.body && req.body.name && req.body.description && req.body.roomId){
+    if (req.body != undefined && req.body.name != undefined && req.body.description != undefined && req.body.roomId != undefined){
 
         dbConnection.query(`SELECT * FROM Room WHERE id='${req.body.roomId}'`, (err, data) => {
             if (data.length == 1){
@@ -63,7 +63,7 @@ CreateStory = (req, res) => {
 
 UpdateStory = (req, res) => {
     // name / slots / mode / password
-    if (req.body && (req.body.name || req.body.description || req.body.value || req.body.roomId)){
+    if (req.body != undefined && (req.body.name != undefined || req.body.description != undefined || req.body.value != undefined || req.body.roomId != undefined)){
 
         dbConnection.query(`SELECT * FROM Story WHERE id='${req.params.id}'`, (err, data) => { // Item exist ?
             if (data.length == 1){
