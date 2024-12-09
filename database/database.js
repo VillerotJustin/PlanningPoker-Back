@@ -15,12 +15,17 @@ const dbConnection = mysql.createConnection({
     password: process.env.DB_PASSWORD
 })
 
-function startDatabase(dbConnection, query="./database/initDB.sql"){
+function startDatabase(dbConnection, queryPath="./database/initDB.sql", testData="./database/testData.sql"){
     dbConnection.connect((err) => {
         if (err) console.error(err)
         else {
             console.log("DB Connected!")
-            dbConnection.query(readFile(query))
+            dbConnection.query(readFile(queryPath))
+            dbConnection.query('SELECT COUNT(1) AS count FROM poker.story', (err, data) => {
+                if (data[0].count == 0){
+                    dbConnection.query(readFile(testData))
+                }
+            })
         }
     })
 }

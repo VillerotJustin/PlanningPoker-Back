@@ -36,11 +36,11 @@ DeleteRoom = (req,res) => {
 }
 
 CreateRoom = (req, res) => {
-    if (req.body != undefined && req.body.name != undefined && req.body.slots != undefined && req.body.mode != undefined && req.body.password != undefined && req.body.owner != undefined){
+    if (req.body != undefined && req.body.name != undefined && req.body.mode != undefined && req.body.password != undefined && req.body.owner != undefined){
 
         dbConnection.query(`SELECT * FROM User WHERE username='${req.body.owner}'`, (err, data) => {
             if (data.length == 1){
-                dbConnection.query(`INSERT INTO Room (name, slots, mode, password, owner) VALUES ('${req.body.name}', ${req.body.slots}, ${req.body.mode}, '${req.body.password}', '${req.body.owner}')`, (err, data)=>{
+                dbConnection.query(`INSERT INTO Room (name, mode, password, owner) VALUES ('${req.body.name}', ${req.body.mode}, '${req.body.password}', '${req.body.owner}')`, (err, data)=>{
                     if (err) console.log(err)
                     else
                         if (data.affectedRows == 1){
@@ -63,14 +63,13 @@ CreateRoom = (req, res) => {
 
 UpdateRoom = (req, res) => {
     // name / slots / mode / password
-    if (req.body != undefined && (req.body.name != undefined || req.body.slots != undefined || req.body.mode != undefined || req.body.password != undefined)){
+    if (req.body != undefined && (req.body.name != undefined || req.body.mode != undefined || req.body.password != undefined)){
 
         dbConnection.query(`SELECT * FROM Room WHERE id='${req.params.id}'`, (err, data) => { // Item exist ?
             if (data.length == 1){
                 // Construct params
                 let params = ""
                 if (req.body.name != undefined) params += `name='${req.body.name}',`
-                if (req.body.slots != undefined) params += `slots=${req.body.slots},`
                 if (req.body.mode != undefined) params += `mode=${req.body.mode},`
                 if (req.body.password != undefined) params += `password='${req.body.password}',`
                 params = params.slice(0, -1)
@@ -93,7 +92,7 @@ UpdateRoom = (req, res) => {
         })
     }else{
         res.status(418)
-        return res.send({err:"Wrong or missing parameters. (name || slots || mode || password)"})
+        return res.send({err:"Wrong or missing parameters. (name || mode || password)"})
     }
 }
 

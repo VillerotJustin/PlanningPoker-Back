@@ -1,6 +1,5 @@
 const {dbConnection} = require('./database/database');
 
-
 class Party {
     constructor(pm, roomId, owner){
         this.members = [owner]
@@ -10,6 +9,11 @@ class Party {
         this.id = roomId
         this.stories = []
         this.indexStory = 0
+        this.state = "WAITING"
+        dbConnection.query(`SELECT name,mode FROM Room WHERE id=${roomId}`, (err, data) => {
+            this.name = data[0].name
+            this.mode = data[0].mode
+        })
         dbConnection.query(`SELECT id,name,description FROM Story WHERE roomId=${roomId}`, (err, data) => {
             for (let story of data){
                 this.stories.push(story)
@@ -18,6 +22,7 @@ class Party {
     }
 
     start(){
+        this.state = "VOTING"
         this.pm.sendTo(this.members,{
             "code":"PARTY_STARTED",
         })
@@ -27,6 +32,7 @@ class Party {
 
     nextStory(){
         if (this.stories.length == this.indexStory){
+            this.state = "ENDED"
             this.pm.sendTo(this.members,{
                 "code":"PARTY_ENDED",
                 "results":this.stories.map(item => [item.name, item.description, item.value]) // On retire id, on renvoie que name, desc et value
@@ -121,6 +127,16 @@ class Party {
         this.votes = new Map()
     }
 
+    getInfo(){
+        return {
+            id: this.id,
+            name: this.name,
+            nbMembers: this.members.length,
+            state: this.state,
+            stories: this.stories
+        }
+    }
+
     strict_check(){
         let votesValues = Array.from(this.votes.values()).filter(val => val != -1)
         if (votesValues.length == 0) return -1
@@ -130,8 +146,6 @@ class Party {
             return -1
         }
     }
-    // 0 0.5 1 2 3 5 8 13 20 40 100 ? (-1)
-    // PARTY_START_VOTE 
 }
 
 module.exports = Party

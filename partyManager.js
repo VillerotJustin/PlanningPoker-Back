@@ -63,6 +63,16 @@ class PartyManager {
             case 'PARTY_VOTE':
                 party.voteMember(idauth, json.vote)
                 break;
+            case 'PARTY_INFO':
+                this.sendTo([idauth], {code: "PARTY_INFO_RESULT", info:party.getInfo()})
+                break;
+            case 'PARTY_FETCH':
+                let parties = []
+                for (let party of this.parties.values()){
+                    if (party.state == "WAITING") parties.push(party.getInfo())
+                }
+                this.sendTo([idauth], {code: "PARTY_FETCH_RESULT", parties:parties})
+                break;
         }
     }
 }

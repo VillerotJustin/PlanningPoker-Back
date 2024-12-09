@@ -29,9 +29,17 @@
         "vote":20
     }
 
+    // Renvoie les données actuelles de la party. (Pour l'affichage)
+    {
+        "code":"PARTY_INFO"
+    }
+
+    // Renvoie la liste des party pouvant être join
+    {
+        "code":"PARTY_FETCH"
+    }
+
     // Socket => Godot
-
-
     {
         "code":"PARTY_MEMBER_JOINED",
         "user":"bob"
@@ -72,9 +80,34 @@
         "code":"PARTY_STARTED"
     }
 
+    // Annonce que la party s'est fini, envoie des données finales.
     {
         "code":"PARTY_ENDED",
         "results":[ [name, description, value], ... ]
+    }
+
+    // Renvoie les données actuelles de la party. (Pour l'affichage)
+    {
+        "code":"PARTY_INFO_RESULT",
+        "info":{
+            id
+            name
+            nbMembers
+            state
+            stories
+        }
+    }
+
+    // Renvoie la liste des party pouvant être join
+    {
+        "code":"PARTY_FETCH_RESULT",
+        "parties": [{
+            id,
+            name,
+            nbMembers,
+            state,
+            stories,
+        }, ...]
     }
 ]
 
