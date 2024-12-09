@@ -22,7 +22,7 @@ function startDatabase(dbConnection, queryPath="./database/initDB.sql", testData
             console.log("DB Connected!")
             dbConnection.query(readFile(queryPath))
             dbConnection.query('SELECT COUNT(1) AS count FROM poker.story', (err, data) => {
-                if (data[0].count == 0){
+                if (data.length != 0 && data[0].count == 0){
                     dbConnection.query(readFile(testData))
                 }
             })
