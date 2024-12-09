@@ -21,7 +21,7 @@ function startDatabase(dbConnection, queryPath="./database/initDB.sql", testData
         else {
             console.log("DB Connected!")
             dbConnection.query(readFile(queryPath))
-            dbConnection.query('SELECT COUNT(1) AS count FROM poker.story', (err, data) => {
+            dbConnection.query('SELECT COUNT(1) AS count FROM poker.Story', (err, data) => {
                 if (data && data.length != 0 && data[0].count == 0){
                     dbConnection.query(readFile(testData))
                 }
