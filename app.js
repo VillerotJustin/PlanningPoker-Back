@@ -1,7 +1,7 @@
 const express = require("express")
 const pm = require('./partyManager')
 const {GetUser, GetUsers, CreateUser, DeleteUser} = require("./crud/users")
-const {GetRoom, GetRooms, CreateRoom, DeleteRoom, UpdateRoom} = require("./crud/rooms")
+const {GetRoom, GetRooms, CreateRoom, DeleteRoom, UpdateRoom, StoriesOfRoom} = require("./crud/rooms")
 const {GetStory, GetStories, CreateStory, DeleteStory, UpdateStory} = require("./crud/stories")
 require('dotenv').config();
 
@@ -102,6 +102,10 @@ app.post("/rooms", (req, res) => {
 
 app.put("/rooms/:id", (req, res) => {
     UpdateRoom(req, res)
+})
+
+app.get("/rooms/stories/:id", (req, res) => {
+    StoriesOfRoom(req, res)
 })
 // END ROOMS
 

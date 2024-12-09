@@ -96,4 +96,13 @@ UpdateRoom = (req, res) => {
     }
 }
 
-module.exports = {GetRoom, GetRooms, CreateRoom, DeleteRoom, UpdateRoom}
+StoriesOfRoom = (req, res) => {
+    dbConnection.query(`SELECT * FROM Story WHERE roomId="${req.params.id}"`, (err,data) => {
+        if (err) console.log(err)
+        else {
+            res.send(data)
+        }
+    })
+}
+
+module.exports = {GetRoom, GetRooms, CreateRoom, DeleteRoom, UpdateRoom, StoriesOfRoom}
