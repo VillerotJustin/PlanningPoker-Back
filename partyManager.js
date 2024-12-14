@@ -12,11 +12,11 @@ class PartyManager {
         this.socket.on('connection', (socket) => {
             socket.on('error', console.error);
             let id = this.clients.push({connection: socket, room:-1}) -1
-            console.log('Client '+ id)
             socket.on('message', (message) => this.messageHandler(message, id))
             
             socket.send(JSON.stringify({"OK":true}));
         });
+        console.log("Websocket listening on port: "+process.env.SOCKET_PORT) 
 
     }
 
