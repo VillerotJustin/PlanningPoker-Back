@@ -36,6 +36,7 @@ class PartyManager {
     }
 
     messageHandler(message, idauth){
+        console.log("wss: "+message)
         let json = JSON.parse(message)
         if (!json.code) return;
 
