@@ -21,6 +21,7 @@ class PartyManager {
     }
 
     sendTo(clientsId, message){
+        console.log("send: "+message+" /To: "+ clientsId)
         let json = JSON.stringify(message)
         for (let id of clientsId){
             let connection = this.clients[id].connection
@@ -29,6 +30,7 @@ class PartyManager {
     }
 
     idauthToParty(idauth){
+        console.log("idauthToParty: "+ idauth)
         for (let party of this.parties.values()){
             if (party.members.includes(idauth)) return party
         }
@@ -36,7 +38,7 @@ class PartyManager {
     }
 
     messageHandler(message, idauth){
-        console.log("wss: "+message)
+        console.log("messageHandler: "+message+" / "+ idauth)
         let json = JSON.parse(message)
         if (!json.code) return;
 
