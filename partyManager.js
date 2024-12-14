@@ -38,12 +38,16 @@ class PartyManager {
     }
 
     messageHandler(message, idauth){
-        console.log("messageHandler: |"+message+"| / "+ idauth)
-        if (message=="") return;
+        if (message=="") {
+            console.log("Message Empty");
+            return;
+        }
+        console.log("messageHandler: |\n"+message+"\n| By: "+ idauth)
         let json = JSON.parse(message)
+        console.log("Message parsed");
         if (!json.code) return;
         console.log(json)
-        
+
         let party = this.idauthToParty(idauth)
 
         switch (json.code){
