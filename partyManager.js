@@ -42,7 +42,8 @@ class PartyManager {
         if (message=="") return;
         let json = JSON.parse(message)
         if (!json.code) return;
-
+        console.log(json)
+        
         let party = this.idauthToParty(idauth)
 
         switch (json.code){
