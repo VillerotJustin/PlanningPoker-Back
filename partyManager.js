@@ -39,6 +39,7 @@ class PartyManager {
 
     messageHandler(message, idauth){
         console.log("messageHandler: |"+message+"| / "+ idauth)
+        if (message=="") return;
         let json = JSON.parse(message)
         if (!json.code) return;
 
