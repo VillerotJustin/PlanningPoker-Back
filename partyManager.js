@@ -53,7 +53,7 @@ class PartyManager {
             this.sendTo([idauth], "Invalid Json")
             return;
         }
-        if (!json.code) return;
+        if (json.code == undefined) return;
         console.log(json)
 
         let party = this.idauthToParty(idauth)
