@@ -44,9 +44,10 @@ class PartyManager {
         }
         console.log("messageHandler: |\n"+message+"\n| By: "+ idauth)
 
+        let json
         // parsing Message with error handling
         try {
-            let json = JSON.parse(message);
+            json = JSON.parse(message);
             console.log(json);
         } catch (e) {
             console.error("Invalid JSON:", e);
