@@ -75,7 +75,7 @@ class PartyManager {
             case 'PARTY_LEAVE':
                 party.delMember(idauth)
                 if (party.members.length == 0){ // On supprime la party si y a plus personne
-                    this.parties.delete(id)
+                    this.parties.delete(party.id)
                 }
                 break;
             case 'PARTY_VOTE':
