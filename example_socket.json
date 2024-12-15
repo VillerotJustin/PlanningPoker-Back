@@ -1,10 +1,10 @@
 [
-    // Godot => Socket
+    // ################################## Godot => Socket
 
     // Le owner "Crée sa party" (le fait également rejoindre)
     {
         "code":"PARTY_CREATE",
-        "id":5,
+        "id":5
     }
 
     // Le owner lance le planning poker
@@ -39,7 +39,7 @@
         "code":"PARTY_FETCH"
     }
 
-    // Socket => Godot
+    // ################################## Socket => Godot
     {
         "code":"PARTY_MEMBER_JOINED",
         "user":"bob"
