@@ -99,6 +99,8 @@ class Party {
             "votes":Array.from(this.votes)
         })
 
+        console.log(this.mode)
+
         let res = this.strict_check()
 
         if (res >= 0){
