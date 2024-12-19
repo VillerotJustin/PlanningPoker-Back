@@ -122,6 +122,7 @@ class Party {
             this.stories[this.indexStory-1].value = res
             this.nextStory()
         }else if (this.countVotes == 1){
+            console.log("One Vote")
             this.revote()
         }else{
             //black magic with differents modes
