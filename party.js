@@ -118,22 +118,14 @@ class Party {
                 break;
         }
         console.log("Result: ",res)
+
         if (res >= 0){
             this.stories[this.indexStory-1].value = res
             this.nextStory()
-        }else if (this.countVotes == 1){
-            console.log("One Vote")
+        }else if (res == -2) {
+            this.pause()
+        } else {
             this.revote()
-        }else{
-            //black magic with differents modes
-            let res = this.strict_check()
-            if (res >= 0){
-                this.nextStory()
-            } else if (res == -2) {
-                this.pause()
-            } else{
-                this.revote()
-            }
         }
     }
 
