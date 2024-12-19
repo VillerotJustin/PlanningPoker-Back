@@ -5,44 +5,16 @@ const {GetRoom, GetRooms, CreateRoom, DeleteRoom, UpdateRoom, StoriesOfRoom} = r
 const {GetStory, GetStories, CreateStory, DeleteStory, UpdateStory} = require("./crud/stories")
 require('dotenv').config();
 
+const swaggerOpt = require('./swaggerOptions');
+const swaggerUi = require('swagger-ui-express');
+
 const app = express()
 const port = process.env.API_PORT
-
-const swaggerUi = require('swagger-ui-express');
-const swaggerJsdoc = require('swagger-jsdoc');
-
-const options = {
-    definition: {
-      openapi: "3.1.0",
-      info: {
-        title: "LogRocket Express API with Swagger",
-        version: "0.1.0",
-        description:
-          "This is a simple CRUD API application made with Express and documented with Swagger",
-        license: {
-          name: "MIT",
-          url: "https://spdx.org/licenses/MIT.html",
-        },
-        contact: {
-          name: "LogRocket",
-          url: "https://logrocket.com",
-          email: "info@email.com",
-        },
-      },
-      servers: [
-        {
-          url: "http://localhost:3000",
-        },
-      ],
-    },
-    apis: ["./routes/*.js"],
-  };
   
-  const specs = swaggerJsdoc(options);
-  app.use(
+app.use(
     "/api-docs",
     swaggerUi.serve,
-    swaggerUi.setup(specs, {explorer: true})
+    swaggerUi.setup(swaggerOpt, { explorer: true })
   );
 
 //defaults headers

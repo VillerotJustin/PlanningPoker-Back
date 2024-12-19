@@ -1,3 +1,5 @@
+//Le JSON est invalide, il n'est pas utilisé dans le doc et sert juste de pseudo-documentation des messages du websocket.
+
 [
     // ################################## Godot => Socket
 
