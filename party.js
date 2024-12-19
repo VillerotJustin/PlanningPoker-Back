@@ -99,10 +99,25 @@ class Party {
             "votes":Array.from(this.votes)
         })
 
-        console.log(this.mode)
-
-        let res = this.strict_check()
-
+        let res;
+        switch (this.mode) {
+            default:
+                res = this.strict_check()
+                break;
+            case 1:
+                res = this.medium_check()
+                break;
+            case 2:
+                res = this.median_check()
+                break;
+            case 3:
+                res = this.absoMaj_check()
+                break;
+            case 4:
+                res = this.relatMaj_check()
+                break;
+        }
+        console.log("Result: "+str(res))
         if (res >= 0){
             this.stories[this.indexStory-1].value = res
             this.nextStory()
@@ -148,6 +163,46 @@ class Party {
     }
 
     strict_check(){
+        let votesValues = Array.from(this.votes.values()).filter(val => val != -1)
+        if (votesValues.length == 0) return -1
+        if (votesValues.every((val) => val == votesValues[0])){
+            return votesValues[0]
+        }else{
+            return -1
+        }
+    }
+
+    medium_check(){
+        let votesValues = Array.from(this.votes.values()).filter(val => val != -1)
+        if (votesValues.length == 0) return -1
+        if (votesValues.every((val) => val == votesValues[0])){
+            return votesValues[0]
+        }else{
+            return -1
+        }
+    }
+
+    median_check(){
+        let votesValues = Array.from(this.votes.values()).filter(val => val != -1)
+        if (votesValues.length == 0) return -1
+        if (votesValues.every((val) => val == votesValues[0])){
+            return votesValues[0]
+        }else{
+            return -1
+        }
+    }
+
+    absoMaj_check(){
+        let votesValues = Array.from(this.votes.values()).filter(val => val != -1)
+        if (votesValues.length == 0) return -1
+        if (votesValues.every((val) => val == votesValues[0])){
+            return votesValues[0]
+        }else{
+            return -1
+        }
+    }
+
+    relatMaj_check(){
         let votesValues = Array.from(this.votes.values()).filter(val => val != -1)
         if (votesValues.length == 0) return -1
         if (votesValues.every((val) => val == votesValues[0])){
