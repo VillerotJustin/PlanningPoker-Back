@@ -147,10 +147,11 @@ class Party {
         }
     }
 
-    chat(message){
+    chat(message, user){
         this.pm.sendTo(this.members,{
             "code":"PARTY_CHAT_MESSAGE",
-            "message":message
+            "message":message,
+            "user":user
         })
         console.log("Send Message")
     }

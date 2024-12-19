@@ -92,7 +92,7 @@ class PartyManager {
                 this.sendTo([idauth], {code: "PARTY_FETCH_RESULT", parties:parties})
                 break;
             case 'PARTY_RECIEVE_MESSAGE':
-                party.chat(json.message)
+                party.chat(json.message, idauth)
                 break;
         }
     }
