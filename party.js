@@ -117,7 +117,7 @@ class Party {
                 res = this.relatMaj_check()
                 break;
         }
-        console.log("Result: "+str(res))
+        console.log("Result: ",res)
         if (res >= 0){
             this.stories[this.indexStory-1].value = res
             this.nextStory()
