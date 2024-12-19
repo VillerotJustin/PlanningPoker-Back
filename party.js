@@ -112,8 +112,7 @@ class Party {
             if (res >= 0){
                 this.nextStory()
             } else if (res == -2) {
-                this.state = "PAUSED"
-                this.pause
+                this.pause()
             } else{
                 this.revote()
             }
