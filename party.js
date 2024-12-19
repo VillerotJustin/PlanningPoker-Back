@@ -146,6 +146,14 @@ class Party {
             return -1
         }
     }
+
+    chat(message){
+        this.pm.sendTo(this.members,{
+            "code":"PARTY_CHAT_MESSAGE",
+            "message":message
+        })
+        console.log("Send Message")
+    }
 }
 
 module.exports = Party
