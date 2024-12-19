@@ -20,12 +20,17 @@ function startDatabase(dbConnection, queryPath="./database/initDB.sql", testData
         if (err) console.error(err)
         else {
             console.log("DB Connected!")
-            dbConnection.query(readFile(queryPath))
-            dbConnection.query('SELECT COUNT(1) AS count FROM poker.Story', (err, data) => {
-                if (data && data.length != 0 && data[0].count == 0){
-                    dbConnection.query(readFile(testData))
+            dbConnection.query(readFile(queryPath), (err) => {
+                if (err) {console.err("Error while initiating database"); return;}
+                else {
+                    dbConnection.query('SELECT COUNT(1) AS count FROM poker.Story', (err, data) => {
+                        if (data && data.length != 0 && data[0].count == 0){
+                            dbConnection.query(readFile(testData))
+                        }
+                    })
                 }
             })
+            
         }
     })
 }

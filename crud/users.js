@@ -1,4 +1,6 @@
 const {dbConnection} = require('../database/database');
+require('dotenv').config();
+dbConnection.query("USE "+process.env.DB_DATABASE+";")
 
 /**
  * @swagger
@@ -24,7 +26,12 @@ const {dbConnection} = require('../database/database');
  */
 GetUsers = (res) => {
     dbConnection.query("SELECT * FROM User", (err, data) => {
-        res.send(data)
+        if (err) {
+            console.error('Database query failed:', err);
+            res.status(500).send({ error: 'Database query failed' });
+        } else {
+            res.status(200).send(data);
+        }
     })
 }
 
@@ -159,7 +166,6 @@ DeleteUser = (req,res) => {
  *                   example: Missing parameters.
  */
 CreateUser = (req, res) => {
-    console.log(req)
     if (req.body != undefined && req.body.username && req.body.password){
         dbConnection.query(`INSERT INTO User VALUES ('${req.body.username}', '${req.body.password}')`, (err, data)=>{
             if (err) {res.status(418); res.send(false); console.log(err)}
