@@ -109,6 +109,7 @@ class Party {
         }else{
             //black magic with differents modes
             let res = this.strict_check()
+            console.log(res)
             if (res >= 0){
                 this.nextStory()
             }else{
