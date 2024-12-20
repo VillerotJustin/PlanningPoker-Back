@@ -117,6 +117,13 @@ GetRoom = (req, res) => {
  */
 DeleteRoom = (req,res) => {
     console.log(`DELETE FROM Room WHERE id="${req.params.id}"`)
+    dbConnection.query(`DELETE FROM Story WHERE roomId="${req.params.id}"`, (err, data)=>{
+        if (err) {
+            console.log(err)
+            res.status(418)
+            res.send(false)
+        }
+    })
     dbConnection.query(`DELETE FROM Room WHERE id="${req.params.id}"`, (err, data)=>{
         if (err) {
             console.log(err)
