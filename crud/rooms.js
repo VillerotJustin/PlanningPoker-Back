@@ -1,5 +1,6 @@
 const {dbConnection} = require('../database/database');
-
+require('dotenv').config();
+dbConnection.query("USE "+process.env.DB_DATABASE+";")
 /**
  * @swagger
  * /rooms:

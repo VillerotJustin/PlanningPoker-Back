@@ -102,3 +102,5 @@ app.put("/stories/:id", (req, res) => {
     UpdateStory(req, res)
 })
 // END STORIES
+
+module.exports = app;
