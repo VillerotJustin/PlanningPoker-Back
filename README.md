@@ -80,3 +80,11 @@ L'application repose sur les variables d'environnement suivantes :
 | `SOCKET_PORT` | Port du serveur WebSocket                | `3001`            |
 
 > Modifier `API_PORT` ou `SOCKET_PORT` pourrait interrompre le fonctionnement du frontend. Assurez-vous de la compatibilité entre le backend et le frontend.
+
+
+## Test
+
+Vous pouvez lancer les test de l'application avec :
+```bash
+   npm run test
+```
