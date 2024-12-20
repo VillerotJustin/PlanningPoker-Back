@@ -52,10 +52,8 @@ Assurez-vous d'avoir installé :
 
 ## Endpoints de l'API
 
-L'API fournit les endpoints suivants :
-
-### Endpoints
 Référez vous a la swaggerDoc
+http://{Ip de l’API ou 127.0.0.1 pour localhost}:3000/api-docs/
 
 ## Intégration WebSocket
 
